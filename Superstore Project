@@ -1,0 +1,20 @@
+select *
+from superstore
+order by price desc;
+-- promt 1 show all info
+
+select category, avg(price)
+from superstore
+group by category;
+-- average price per category
+
+select item_id, item_name, stock_quantity
+from superstore
+order by stock_quantity desc;
+--- what item is most in stock and needs a fire sell
+
+select Item_id, item_name, average_rating
+from superstore
+where average_rating < 4.5
+order by average_rating;
+--- what items are below 4.5 rating and need improvement
