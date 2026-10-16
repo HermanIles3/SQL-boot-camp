@@ -1,0 +1,25 @@
+select*
+from Bank_Products;
+---- to get all information
+
+select *
+from Bank_products
+order by monthly_fee desc;
+--- monthly fee highest to lowes
+
+select avg(monthly_fee)
+from bank_products;
+-- show average monthly fee
+
+select*
+from Bank_products
+where interest_rate >0
+order by interest_rate desc;
+----- show all products with above zero interates rate from highest to lowest.
+
+Select*
+from Bank_products
+where Product_type = 'Savings'
+and interest_rate >= .2
+order by interest_rate;
+--- show all savings products with interest rate
