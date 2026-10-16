@@ -23,3 +23,22 @@ where Product_type = 'Savings'
 and interest_rate >= .2
 order by interest_rate;
 --- show all savings products with interest rate
+
+
+Select product_name
+from bank_products;
+--- question 1 answered all product names
+
+Select product_name
+from bank_products
+where product_type = 'Checking'
+or 
+product_type = 'Savings';
+-- question 2 show all checking and savings products
+
+Select product_name, interest_rate
+from bank_products
+where product_type = 'Savings'
+and interest_rate > .75
+and monthly_fee = 0;
+--- question 3 savings with interest rate above .75
