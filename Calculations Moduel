@@ -1,0 +1,10 @@
+SELECT *
+FROM modules
+;
+
+SELECT name, modules_assigned - modules_completed AS 'modules_remaining'
+, modules_completed  / modules_assigned AS 'fraction_completed'
+, (modules_completed  / modules_assigned)*100 AS 'percent not rounded'
+, round((modules_completed  / modules_assigned)*100, 1) AS 'percent'
+from modules 
+;
