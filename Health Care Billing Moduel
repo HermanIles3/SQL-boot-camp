@@ -1,0 +1,40 @@
+SELECT patient_id
+, procedure_bill - payment_received as 'payment_remaining'
+from billing
+;
+---- Payment remining
+
+SELECT patient_id, procedure_bill 
+, payment_received/procedure_bill as 'payment_fraction'
+FROM billing
+;
+-- Payment fratcion
+
+SELECT patient_id, procedure_bill 
+, round((payment_received/procedure_bill)*100, 1) as 'payment_percentage'
+FROM billing
+order by payment_percentage
+;
+--- Patments in percentage
+
+SELECT patient_id, procedure_bill 
+, CASE
+	WHEN (payment_received/procedure_bill) = 1 THEN 'Paid'
+    WHEN (payment_received/procedure_bill) = 0 THEN 'No Payment'
+    ELSE "In Progress"
+   END AS 'payment_status'
+FROM billing
+;
+----- Payment Status
+
+SELECT patient_id, procedure_bill 
+, CASE
+	WHEN (payment_received/procedure_bill)*100 = 100 THEN 'Paid'
+    WHEN (payment_received/procedure_bill)*100 >= 75  Then '75%+'
+    WHEN (payment_received/procedure_bill)*100 >= 50  Then '50%+'
+    WHEN (payment_received/procedure_bill)*100 >= 25  Then '25%+'
+    WHEN (payment_received/procedure_bill)*100 = 0 THEN 'No Payment'
+    ELSE 'UNDER 25%'
+   END AS 'payment_status'
+FROM billing
+--- Payment Status as percentages---
