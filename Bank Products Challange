@@ -1,44 +1,59 @@
-select*
-from Bank_Products;
+SELECT*
+FROM bank_Products;
 ---- to get all information
 
-select *
-from Bank_products
-order by monthly_fee desc;
+SELECT *
+FROM bank_products
+ORDER BY monthly_fee desc;
 --- monthly fee highest to lowes
 
-select avg(monthly_fee)
-from bank_products;
+SELECT AVG(monthly_fee)
+FROM bank_products;
 -- show average monthly fee
 
-select*
-from Bank_products
-where interest_rate >0
-order by interest_rate desc;
+SELECT*
+FROM Bank_products
+WHERE interest_rate >0
+ORDER BY interest_rate desc;
 ----- show all products with above zero interates rate from highest to lowest.
 
 Select*
-from Bank_products
-where Product_type = 'Savings'
-and interest_rate >= .2
-order by interest_rate;
+FROM Bank_products
+WHERE Product_type = 'Savings'
+AND interest_rate >= .2
+ORDER BY interest_rate;
 --- show all savings products with interest rate
 
 
-Select product_name
-from bank_products;
+SELECT product_name
+FROM bank_products;
 --- question 1 answered all product names
 
-Select product_name
-from bank_products
-where product_type = 'Checking'
-or 
+SELECT product_name
+FROM bank_products
+WHERE product_type = 'Checking'
+OR 
 product_type = 'Savings';
 -- question 2 show all checking and savings products
 
-Select product_name, interest_rate
-from bank_products
-where product_type = 'Savings'
-and interest_rate > .75
-and monthly_fee = 0;
+SELECT product_name, interest_rate
+FROM bank_products
+WHERE product_type = 'Savings'
+AND interest_rate > .75
+AND monthly_fee = 0;
 --- question 3 savings with interest rate above .75
+
+--------------- more questions to answer from next module------
+SELECT product_name
+, description
+FROM bank_products 
+WHERE product_name IN ('Premium Checking', 'High Yield Savings', 'Platinum Credit Card', 'Gold Credit Card')
+;
+-- Using In()--
+
+SELECT product_name
+, description
+FROM bank_products
+WHERE product_name LIKE '%Business%'
+;
+-- Using LIKE()--
