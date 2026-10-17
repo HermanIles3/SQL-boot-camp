@@ -55,5 +55,6 @@ SELECT product_name
 , description
 FROM bank_products
 WHERE product_name LIKE '%Business%'
+OR description LIKE '%Business%'
 ;
 -- Using LIKE()--
