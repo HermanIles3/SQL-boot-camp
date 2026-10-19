@@ -58,3 +58,37 @@ WHERE product_name LIKE '%Business%'
 OR description LIKE '%Business%'
 ;
 -- Using LIKE()--
+
+SELECT patient_id 
+, procedure_bill - payment_received AS payment_remaining 
+FROM billing;
+--- get payment remaining
+
+SELECT patient_id 
+, SUM(procedure_bill - payment_received) AS payment_remaining 
+FROM billing
+GROUP BY patient_id;
+--- group by ID to see total payments accross multiple bills
+
+SELECT patient_id 
+, SUM(procedure_bill - payment_received) AS payment_remaining 
+FROM billing
+GROUP BY patient_id
+HAVING payment_remaining > 150;
+--- group by ID to see total payments accross multiple bills showing only $150 or more
+
+SELECT insurance_provider
+, COUNT(procedure_bill) as lab_bills
+FROM billing
+WHERE procedure_code LIKE '80%'
+GROUP BY insurance_provider;
+--- SHOW how number of labs billed by insurance provider.
+
+SELECT insurance_provider
+, COUNT(procedure_bill) as lab_bills
+FROM billing
+WHERE procedure_code LIKE '80%'
+GROUP BY insurance_provider
+HAVING lab_bills >3;
+--- Show incursces that have billed for more than 3 labs.
+
