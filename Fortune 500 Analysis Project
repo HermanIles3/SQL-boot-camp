@@ -1,0 +1,36 @@
+SELECT company_name, paid_time_off_days
+FROM Fortune_companies
+WHERE industry = 'Technology' AND paid_time_off_days > 10;
+ -- Technology companies with more than 10 Days PTO #1
+ 
+ SELECT company_name, paid_time_off_days, maternity_leave_weeks
+ , paid_time_off_days + (maternity_leave_weeks * 7) as 'total_days_off'
+FROM Fortune_companies
+WHERE industry = 'Technology' 
+AND paid_time_off_days > 10 
+AND total_days_off >=120;
+--- Tech Jobs where PTO + Maturnity leave is great than or equal to 120 days off. #2
+
+SELECT Company_name, Industry
+, CASE
+	WHEN avg_employee_tenure > 7 THEN 'Long Term Company'
+    WHEN avg_employee_tenure >5 THEN 'Medium Term Comapny'
+    ELSE 'Short Term Company'
+  END AS tenure_status
+FROM fortune_companies
+ORDER BY tenure_status;
+--- Companies by Tenure status #3
+
+SELECT Industry
+, avg(employees) as average_employee_count
+FROM Fortune_companies
+GROUP BY industry
+HAVING average_employee_count <100000;
+--- Industries that average less than 100000 employees #4
+
+SELECT company_name, Industry
+FROM fortune_companies
+Where Healthcare_benefits = 1
+AND revenue > 200
+AND industry in('Finance')
+---- Financial companies with high revenue and benifits
