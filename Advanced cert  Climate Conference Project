@@ -1,0 +1,18 @@
+-- Quiry 1 Inner Join-- ID of First name gave feed back to First Name
+SELECT vips.member_ID
+, vips.first_name || ' '|| vips.last_name AS Gave_Feedback
+, peers.first_name || ' '|| peers.last_name AS RecievedFeedback
+FROM vips vips
+INNER JOIN vips peers
+ON peers.member_id = vips.provides_feedback_to
+ORDER BY vips.member_id
+;
+
+
+-- Quiry 2 Left join - who attened what event ordered by type type
+Select events.event_type, vips.member_id, vips.first_name, vips.last_name, events.event_name
+From vips
+join events
+on events.event_ID = vips.event
+order by event_type
+;
