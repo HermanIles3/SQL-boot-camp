@@ -10,7 +10,9 @@ ORDER BY vips.member_id
 
 
 -- Quiry 2 Left join - who attened what event ordered by type type
-Select events.event_type, vips.member_id, vips.first_name, vips.last_name, events.event_name
+Select events.event_type, vips.member_id
+, vips.first_name || ' '|| vips.last_name AS member_full_name
+, events.event_name
 From vips
 join events
 on events.event_ID = vips.event
