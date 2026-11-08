@@ -1,4 +1,4 @@
--- Quiry 1 Inner Join-- ID of First name gave feed back to First Name
+-- query1 Inner Join & Self Join-- ID of First name gave feed back to First Name
 SELECT vips.member_ID
 , vips.first_name || ' '|| vips.last_name AS Gave_Feedback
 , peers.first_name || ' '|| peers.last_name AS RecievedFeedback
@@ -9,7 +9,7 @@ ORDER BY vips.member_id
 ;
 
 
--- Quiry 2 Left join - who attened what event ordered by type type
+-- query 2 Left join - who attened what event ordered by type type
 Select events.event_type, vips.member_id
 , vips.first_name || ' '|| vips.last_name AS member_full_name
 , events.event_name
@@ -17,4 +17,48 @@ From vips
 join events
 on events.event_ID = vips.event
 order by event_type
+;
+
+--query 3 multi join - What Hotel did everyone stay at?
+Select vips.first_name || ' '|| vips.last_name AS member_full_name
+, hotels.hotel_name
+From vips
+join reservations
+on reservations.member_id = vips.member_id
+	join hotels
+    on hotels.hotel_id = reservations.hotel
+;
+
+-- query 4 Everyone who etended an event and gave feedback and is from a university and stayed at the for seasons
+Select vips.member_id 
+, vips.first_name || ' '|| vips.last_name AS member_full_name
+, vips.assoc_type 
+from vips
+join reservations
+on Reservations.member_id = vips.member_id
+where vips.event != 'NULL'
+AND vips.assoc_type = 'education'
+AND reservations.hotel = 3
+;
+
+-- query 5 Member ID, full name, and hotel they stayed at If they have a dinner RSVP.
+Select vips.member_id 
+, vips.first_name || ' '|| vips.last_name AS member_full_name
+, hotels.hotel_name
+From vips
+join reservations
+on reservations.member_id = vips.member_id
+	join hotels
+    on hotels.hotel_id = reservations.hotel
+Where reservations.Dinner_rsvp = '1'
+;
+
+--- query 6 Hotels and there total welcome RSVP
+Select hotels.hotel_name,
+SUM(reservations.welcome_rsvp) as 'Total Welcome RSVPs'
+from hotels
+join reservations
+on reservations.hotel = hotels.hotel_id
+group by hotels.hotel_name
+order by hotels.hotel_id
 ;
