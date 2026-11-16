@@ -1,0 +1,14 @@
+SELECT * from suspect_info LIMIT 5;
+SELECT * from vehicle_info LIMIT 5;
+SELECT * from associates_info LIMIT 5;
+SELECT * from location_info LIMIT 5;
+SELECT * from alibi_info LIMIT 5;
+
+
+Select suspect_info.suspect_first_name, suspect_info.suspect_last_name,location_info.cell_location,location_info.date_time
+from suspect_info
+join location_info
+on location_info.suspect_id = suspect_info.suspect_id
+where cell_location = 'Carnival City'
+and date_time = '01/13/21 17:01'
+;
